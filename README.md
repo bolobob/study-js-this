@@ -52,19 +52,24 @@ jsのthisを勉強
 ======
 
 * つまり`this`は何によって変わるでしょうか？
-* 以下の`this`は何を指すでしょうか？
+* 以下の`this.x`はそれぞれ何を指すでしょうか？実行せずに答えて下さい
 
 ```js
 fn0();
 function fn0() {
-  fn1();
-  function fn1() {
-    fn2();
-    function fn2() {
-      console.log(this);
-    };
+  var obj = {
+    x: 1,
+    fn1: function() {
+      console.log(this.x);
+      fn2();
+      function fn2() {
+        var x = 2;
+        console.log(this.x);
+      }
+    }
   };
-};
+  obj.fn1();
+}
 ```
  
 設問６（理解度チェック）
